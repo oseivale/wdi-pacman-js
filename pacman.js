@@ -61,10 +61,10 @@ function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
   console.log('(p) Eat Power-Pellet');
-  console.log('(1) Eat Inky');
-  console.log('(2) Eat Blinky');
-  console.log('(3) Eat Pinky');
-  console.log('(4) Eat Clyde');
+  console.log('(1) Eat Inky ' +'('+ghosts.edible+')');
+  console.log('(2) Eat Blinky ' +'('+ghosts.edible+')');
+  console.log('(3) Eat Pinky ' +'('+ghosts.edible+')');
+  console.log('(4) Eat Clyde ' +'('+ghosts.edible+')');
   console.log('(q) Quit');
 
 }
@@ -84,27 +84,27 @@ function displayMenu() {
   function eatGhost(ghost){
   // for (var i = 0; i <= ghosts.length; i++){
     if (ghosts.edible === false) {
-      console.log('\nedible');
-    } else {
-      loseLife();
-      switch (ghost) {
-        case ghosts[0]:
-          console.log(ghosts.name +' has been eaten, and his personality is '+ghosts.character_trait);
-          break;
-        case ghosts[1]:
-
-          break;
-        case ghosts[2]:
-
-          break;
-        case ghosts[3]:
-
-          break;
-        default:
-
-      }
+      console.log('\n' + ghosts.name + 'that has the colour ' +ghosts.color+ ' is not edible.');
+      loseLife()
+    } else{
+      console.log('\n' + ghosts.name + ' that has the colour ' +ghosts.color+ ' is edible.')
+      score += 200
+      ghosts.edible = false;
     }
   }
+
+//     ghosts.forEach(ghost)
+//
+// {
+//       if(ghosts[0]){console.log(inky.name +' has been eaten, and his personality is '+inky.character_trait);
+//       } else if(ghosts[1]){console.log(blinky.name +' has been eaten, and his personality is '+blinky.character_trait)
+//       } else if(ghosts[2]){console.log(pinky.name +' has been eaten, and his personality is '+pinky.character_trait)
+//       } else{
+//       console.log(clyde.name +' has been eaten, and his personality is '+clyde.character_trait)
+//       }
+//     }
+//   }
+// }
 // }
 
 
