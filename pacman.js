@@ -1,6 +1,9 @@
 // Setup initial game stats
 var score = 0;
 var lives = 2;
+var powerPellet = 4;
+
+ghosts = [inky, blinky, pinky, clyde];
 
 // Define your ghosts here
 var inky = {
@@ -9,7 +12,7 @@ var inky = {
   color: 'Red',
   character_trait: 'Shadow',
   edible: false
-}
+};
 
 var blinky = {
   name: 'Blinky',
@@ -17,7 +20,7 @@ var blinky = {
   color: 'Cyan',
   character_trait: 'Speedy',
   edible: false
-}
+};
 
 var pinky = {
   name: 'Pinky',
@@ -25,7 +28,7 @@ var pinky = {
   color: 'Pink',
   character_trait: 'Bashful',
   edible: false
-}
+};
 
 var clyde = {
   name: 'Clyde',
@@ -33,8 +36,7 @@ var clyde = {
   color: 'Orange',
   character_trait: 'Pokey',
   edible: false
-}
-// replace this comment with your four ghosts setup as objects
+};
 
 
 // Draw the screen functionality
@@ -52,14 +54,59 @@ function clearScreen() {
 }
 
 function displayStats() {
-  console.log('Score: ' + score + '     Lives: ' + lives);
+  console.log('Score: ' + score + '     Lives: ' + lives + '\n\n\nPower-Pellets: '+powerPellet);
 }
 
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  console.log('(p) Eat Power-Pellet');
+  console.log('(1) Eat Inky');
+  console.log('(2) Eat Blinky');
+  console.log('(3) Eat Pinky');
+  console.log('(4) Eat Clyde');
   console.log('(q) Quit');
+
 }
+
+  function eatPowerPellet(key){
+        score += 50;
+        ghosts.edible = true;
+        powerPellet--
+        if(powerPellet > 0){
+          console.log('Pac-Man has eaten a power pellet!');
+        } else if(powerPellet <= 0){
+          console.log('Warning: No Power-Pellets left!');
+        }
+      }
+
+
+  function eatGhost(ghost){
+  // for (var i = 0; i <= ghosts.length; i++){
+    if (ghosts.edible === false) {
+      console.log('\nedible');
+    } else {
+      loseLife();
+      switch (ghost) {
+        case ghosts[0]:
+          console.log(ghosts.name +' has been eaten, and his personality is '+ghosts.character_trait);
+          break;
+        case ghosts[1]:
+
+          break;
+        case ghosts[2]:
+
+          break;
+        case ghosts[3]:
+
+          break;
+        default:
+
+      }
+    }
+  }
+// }
+
 
 function displayPrompt() {
   // process.stdout.write is similar to console.log except it doesn't add a new line after the text
@@ -73,6 +120,18 @@ function eatDot() {
   score += 10;
 }
 
+function loseLife(){
+  if(lives > 0 ){
+    lives--
+  } else if(lives <= 0){
+    process.exit();
+    console.log('\nYou are dead!');
+  }
+}
+
+// process.exit();
+
+
 
 // Process Player's Input
 function processInput(key) {
@@ -81,8 +140,23 @@ function processInput(key) {
     case 'q':
       process.exit();
       break;
+    case '1':
+      eatGhost();
+      break;
+    case '2':
+      eatGhost();
+      break;
+    case '3':
+      eatGhost();
+      break;
+    case '4':
+      eatGhost();
+      break;
     case 'd':
       eatDot();
+      break;
+    case 'p':
+      eatPowerPellet();
       break;
     default:
       console.log('\nInvalid Command!');
